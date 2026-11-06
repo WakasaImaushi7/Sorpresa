@@ -4,7 +4,7 @@
   /* ============================================================
      CONFIGURACIÓN: escribe aquí TU nombre (el de quien escribe).
      Es el único lugar que debes cambiar. Valor provisional: */
-  var AUTHOR_NAME = "Clever";
+  var AUTHOR_NAME = "Tu nombre";
   /* ============================================================ */
 
   var SCENES = ["intro", "rose", "letters", "final", "heart"];
@@ -260,10 +260,30 @@
     window.setTimeout(function () { nameForm.classList.remove("is-invalid"); }, 600);
   }
 
+  function fitRoseName() {
+    roseName.style.fontSize = "";
+    var size = rose.clientWidth;
+    var natural = roseName.scrollWidth;
+    var limit = size * 0.6;
+    if (natural > limit && natural > 0) {
+      var base = parseFloat(window.getComputedStyle(roseName).fontSize);
+      roseName.style.fontSize = Math.max(base * (limit / natural), 10) + "px";
+    }
+  }
+
+  var fitTimer = 0;
+  window.addEventListener("resize", function () {
+    if (fitTimer) window.clearTimeout(fitTimer);
+    fitTimer = window.setTimeout(function () {
+      if (!roseStage.hidden) fitRoseName();
+    }, 150);
+  });
+
   function revealRose(name) {
     roseForm.hidden = true;
     roseStage.hidden = false;
     roseName.textContent = name;
+    fitRoseName();
     roseCaption.textContent = "Tu nombre ya está guardado entre sus pétalos.";
 
     later(function () {

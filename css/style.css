@@ -477,14 +477,14 @@ svg { display: block; }
   top: 50%;
   transform: translate(-50%, -50%);
   isolation: isolate;
-  max-width: 76%;
+  width: max-content;
+  white-space: nowrap;
   font-family: var(--font-display);
   font-style: italic;
   font-size: calc(var(--rose-size) * .145);
   line-height: 1.05;
   letter-spacing: .02em;
   text-align: center;
-  overflow-wrap: anywhere;
   color: #fff4f5;
   opacity: 0;
   text-shadow: 0 2px 10px rgba(0, 0, 0, .85);
