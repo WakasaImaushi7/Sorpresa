@@ -4,7 +4,7 @@
   /* ============================================================
      CONFIGURACIÓN: escribe aquí TU nombre (el de quien escribe).
      Es el único lugar que debes cambiar. Valor provisional: */
-  var AUTHOR_NAME = "Tu nombre";
+  var AUTHOR_NAME = "Clever";
   /* ============================================================ */
 
   var SCENES = ["intro", "rose", "letters", "final", "heart"];
