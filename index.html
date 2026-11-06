@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#050205">
+<meta name="description" content="Una historia en cuatro actos, hecha con calma y con intención.">
+<title>Para ti</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<canvas class="particles" id="particles" aria-hidden="true"></canvas>
+
+<div class="stage" id="stage">
+
+  <section class="scene scene--intro is-active" id="scene-intro" tabindex="-1" aria-label="Introducción">
+    <div class="letterbox" aria-hidden="true"><i></i><i></i></div>
+    <div class="intro">
+      <p class="kicker reveal" style="--d:.15s">Una historia en cuatro actos</p>
+      <h1 class="intro__title">
+        <span class="line reveal" style="--d:.45s">Hay historias que empiezan</span>
+        <span class="line reveal" style="--d:.75s">en <em>silencio</em>.</span>
+      </h1>
+      <span class="rule reveal" style="--d:1.05s" aria-hidden="true"></span>
+      <p class="intro__sub reveal" style="--d:1.2s">Esta&hellip; comienza <span>contigo</span>.</p>
+      <div class="intro__cta reveal" style="--d:1.5s">
+        <button class="btn btn--primary" type="button" data-go="rose">Comenzar</button>
+      </div>
+      <p class="intro__foot reveal" style="--d:1.8s">sin ruido &middot; sin prisa</p>
+    </div>
+  </section>
+
+  <section class="scene scene--rose" id="scene-rose" tabindex="-1" aria-label="La rosa y tu nombre">
+    <div class="rose-wrap">
+
+      <div class="panel" id="roseForm">
+        <p class="kicker reveal" style="--d:.1s">Acto II</p>
+        <h2 class="scene-title reveal" style="--d:.25s">Una flor para tu nombre</h2>
+        <p class="scene-lead reveal" style="--d:.4s">Todo lo que florece empieza por un nombre.</p>
+        <form class="name-form reveal" id="nameForm" style="--d:.6s" novalidate>
+          <label class="name-form__label" for="nameInput">&iquest;C&oacute;mo te llamas?</label>
+          <input class="name-input" id="nameInput" name="name" type="text" maxlength="24"
+                 autocomplete="off" spellcheck="false" placeholder="Escribe tu nombre"
+                 aria-describedby="nameError">
+          <p class="name-error" id="nameError" role="alert"></p>
+          <button class="btn btn--primary" type="submit">Revelar la rosa</button>
+        </form>
+      </div>
+
+      <div class="rose-stage" id="roseStage" hidden>
+        <div class="rose" id="rose">
+          <span class="rose__halo" aria-hidden="true"></span>
+          <svg class="rose__svg" viewBox="30 30 340 340" aria-hidden="true">
+            <defs>
+              <linearGradient id="gOuter" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0" stop-color="#5d0813"/>
+                <stop offset=".7" stop-color="#b8152d"/>
+                <stop offset="1" stop-color="#e33a52"/>
+              </linearGradient>
+              <linearGradient id="gMid" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0" stop-color="#4f0610"/>
+                <stop offset=".72" stop-color="#a51227"/>
+                <stop offset="1" stop-color="#d3283f"/>
+              </linearGradient>
+              <linearGradient id="gInner" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0" stop-color="#3f040c"/>
+                <stop offset=".75" stop-color="#8c0f21"/>
+                <stop offset="1" stop-color="#bb1a31"/>
+              </linearGradient>
+              <linearGradient id="gCore" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0" stop-color="#2c0208"/>
+                <stop offset=".8" stop-color="#6d0a18"/>
+                <stop offset="1" stop-color="#941023"/>
+              </linearGradient>
+              <linearGradient id="gLeaf" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0" stop-color="#12291d"/>
+                <stop offset="1" stop-color="#2c5138"/>
+              </linearGradient>
+              <radialGradient id="gShade" cx=".5" cy=".5" r=".5">
+                <stop offset="0" stop-color="#070103" stop-opacity=".9"/>
+                <stop offset=".6" stop-color="#070103" stop-opacity=".55"/>
+                <stop offset="1" stop-color="#070103" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <g class="rose__leaves" id="roseLeaves"></g>
+            <g class="rose__petals" id="rosePetals"></g>
+            <circle class="rose__shade" cx="200" cy="200" r="74" fill="url(#gShade)"/>
+          </svg>
+          <p class="rose__name" id="roseName"></p>
+        </div>
+        <p class="rose__caption" id="roseCaption">Tu nombre ya est&aacute; guardado entre sus p&eacute;talos.</p>
+        <div class="rose__cta" id="roseCta">
+          <button class="btn btn--primary" type="button" data-go="letters">Continuar</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="scene scene--letters" id="scene-letters" tabindex="-1" aria-label="Cartas secretas">
+    <div class="letters">
+      <p class="kicker reveal" style="--d:.1s">Acto III</p>
+      <h2 class="scene-title reveal" style="--d:.25s">Cartas que no me atrev&iacute; a decir</h2>
+
+      <div class="card-wrap reveal" style="--d:.45s">
+      <article class="card" id="card">
+        <div class="card__stack">
+
+          <div class="envelope" id="envelope">
+            <svg viewBox="0 0 300 186" aria-hidden="true">
+              <rect x="4" y="4" width="292" height="178" rx="10" fill="#150810" stroke="#5d1120" stroke-width="2"/>
+              <path class="env__flap" d="M6 12 L150 100 L294 12" fill="#1f0c14" stroke="#74152a" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M6 174 L120 98 M294 174 L180 98" fill="none" stroke="#3b0c16" stroke-width="2"/>
+              <path d="M6 12 L6 174 M294 12 L294 174" fill="none" stroke="#3b0c16" stroke-width="2"/>
+            </svg>
+            <button class="seal" id="seal" type="button" aria-label="Abrir la carta">
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <circle cx="32" cy="32" r="23" fill="#8d0e21"/>
+                <circle cx="32" cy="32" r="23" fill="none" stroke="#4e0511" stroke-width="2"/>
+                <path d="M32 43c-8-5.5-12-10-12-14.4A6.6 6.6 0 0 1 32 25a6.6 6.6 0 0 1 12 3.6C44 33 40 37.5 32 43z" fill="#3d0710"/>
+              </svg>
+            </button>
+            <p class="envelope__hint">Toca el sello</p>
+          </div>
+
+          <div class="paper" id="paper">
+            <p class="paper__meta"><span id="letterIndex">Carta I</span><i aria-hidden="true"></i></p>
+            <h3 class="paper__title" id="letterTitle"></h3>
+            <p class="paper__text" id="letterText"></p>
+            <div class="paper__actions">
+              <button class="btn btn--ghost" type="button" id="nextLetter">Siguiente carta</button>
+            </div>
+          </div>
+
+        </div>
+      </article>
+      </div>
+
+      <div class="dots reveal" id="dots" style="--d:.6s" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="scene scene--final" id="scene-final" tabindex="-1" aria-label="Escena final">
+    <div class="petals" id="petals" aria-hidden="true"></div>
+    <div class="final">
+      <p class="kicker reveal" style="--d:.2s">Acto IV</p>
+      <h2 class="final__title reveal" style="--d:.45s">Y esto era solo lo que quer&iacute;a decirte</h2>
+      <blockquote class="final__quote">
+        <span class="q-line reveal" style="--d:1s">No s&eacute; en qu&eacute; momento algunas personas comienzan a hacer m&aacute;s bonitos nuestros d&iacute;as.</span>
+        <span class="q-line reveal" style="--d:2.1s">Solo s&eacute; que hay algo en ti que merece ser apreciado&hellip;</span>
+        <span class="q-line q-line--accent reveal" style="--d:3.2s">y quer&iacute;a que hoy lo supieras.</span>
+      </blockquote>
+      <span class="rule reveal" style="--d:3.9s" aria-hidden="true"></span>
+      <p class="final__note reveal" style="--d:4.1s">Gracias por existir as&iacute;, tan tuya.</p>
+      <div class="final__cta reveal" style="--d:4.5s">
+        <button class="btn btn--primary" type="button" data-go="heart">Continuar</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="scene scene--heart" id="scene-heart" tabindex="-1" aria-label="Final: un coraz&oacute;n hecho de dos nombres">
+    <canvas class="heart-canvas" id="heartCanvas" aria-hidden="true"></canvas>
+    <div class="heart-layout">
+      <div class="heart-slot" id="heartSlot" role="img" aria-label="Un coraz&oacute;n formado por letras con los dos nombres"></div>
+      <div class="heart-caption" id="heartCaption">
+        <p class="heart-phrase" id="heartPhrase">
+          <span class="heart-phrase__ghost" aria-hidden="true">Hay personas que llegan sin hacer ruido y, sin darse cuenta, hacen que todo sea un poquito m&aacute;s bonito.</span>
+          <span class="heart-phrase__live" id="heartPhraseLive" aria-hidden="true"></span>
+          <span class="sr-only">Hay personas que llegan sin hacer ruido y, sin darse cuenta, hacen que todo sea un poquito m&aacute;s bonito.</span>
+        </p>
+        <p class="heart-names" id="heartNames">
+          <span id="heartNameA"></span>
+          <svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21C5 15.8 1 12 1 7.4A5.4 5.4 0 0 1 12 5a5.4 5.4 0 0 1 11 2.4C23 12 19 15.8 12 21z"/></svg>
+          <span id="heartNameB"></span>
+        </p>
+        <div class="heart-actions" id="heartActions">
+          <button class="btn btn--ghost" type="button" id="restart">Volver a empezar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="progress" id="progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="curtain" id="curtain" aria-hidden="true"><i></i></div>
+
+<noscript>
+  <p class="noscript">Esta historia necesita JavaScript para florecer.</p>
+</noscript>
+
+<script src="js/heart.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
